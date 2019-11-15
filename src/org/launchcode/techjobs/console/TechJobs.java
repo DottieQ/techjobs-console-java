@@ -109,11 +109,16 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    /** Print a list of jobs
+     * the printJobs method takes in an arraylist of hashmaps that has been generated from the users
+     * selections - either lists or searches.
+     * An empty arraylist returns "no results".
+     * @param someJobs
+     */
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
         if (someJobs.size() < 1) {
-            System.out.println("no results");
+            System.out.println("No results match your search.");
         } else {
             for (HashMap<String, String> map : someJobs) {
                 System.out.println("*****");
@@ -126,5 +131,3 @@ public class TechJobs {
 
     }
 }
-
-  //  printJobs(JobData.findByColumnAndValue(searchField, searchTerm));

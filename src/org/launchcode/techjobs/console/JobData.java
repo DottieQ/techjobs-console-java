@@ -65,6 +65,7 @@ public class JobData {
      * @param column   Column that should be searched.
      * @param value Value of teh field to search for
      * @return List of all jobs matching the criteria
+     * Search methods are case-insensitive.
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 
@@ -76,8 +77,10 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            String aValueLC = aValue.toLowerCase();
+            String valueLC = value.toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (aValueLC.contains(valueLC)) {
                 jobs.add(row);
             }
         }
@@ -86,7 +89,15 @@ public class JobData {
     }
 
     /**
-     * Adding findByValue method to search for any time a term appears in any column
+     * Returns results of search of all the job data by key/value, using
+     * inclusion of the search term.
+     *
+     * For example, searching for "ruby" will return matches in any column
+     * that includes "ruby".
+     *
+     * @param value Value of teh field to search for
+     * @return List of all jobs matching the criteria
+     * Search methods are case-insensitive.
      */
 
 
@@ -101,8 +112,10 @@ public class JobData {
             for (Map.Entry<String, String> item : row.entrySet()) {
 
                 String aValue = item.getValue();
+                String aValueLC = aValue.toLowerCase();
+                String valueLC = value.toLowerCase();
 
-                if (aValue.contains(value)) {
+                if (aValueLC.contains(valueLC) && !searchedJobs.contains(row)) {
                     searchedJobs.add(row);
                 }
             }
